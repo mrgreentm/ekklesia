@@ -22,4 +22,17 @@ class MemberService {
             memberRequestDTO.email
         )
     }
+
+    fun updateMember(memberId: String, memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
+        return MemberResponseDTO(
+            UUID.randomUUID(),
+            memberRequestDTO.name,
+            memberRequestDTO.age,
+            memberRequestDTO.email
+        )
+    }
+
+    fun deleteMember(memberId: String): Boolean {
+        return true;
+    }
 }
