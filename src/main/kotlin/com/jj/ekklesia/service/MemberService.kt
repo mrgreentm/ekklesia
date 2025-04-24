@@ -2,37 +2,42 @@ package com.jj.ekklesia.service
 
 import com.jj.ekklesia.dto.MemberRequestDTO
 import com.jj.ekklesia.dto.MemberResponseDTO
+import com.jj.ekklesia.mapper.MemberMapper
+import com.jj.ekklesia.model.Member
+import com.jj.ekklesia.repository.MemberRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
-class MemberService {
+class MemberService(private val memberRepository: MemberRepository) {
     fun getAllMembers(): List<MemberResponseDTO> {
-        return listOf(
-            MemberResponseDTO(UUID.randomUUID(), "João", 21, "joaonetotfm@gmail.com"),
-            MemberResponseDTO(UUID.randomUUID(), "Pedro", 21, "pedro@gmail.com")
-        )
+        return this.memberRepository.findAll().map {
+            MemberMapper.toDTO(it)
+        }
     }
 
+    @Transactional
     fun createMember(memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
-        return MemberResponseDTO(
-            UUID.randomUUID(),
-            memberRequestDTO.name,
-            memberRequestDTO.age,
-            memberRequestDTO.email
+        val member =  Member(
+            id = UUID.randomUUID(),
+            name = memberRequestDTO.name,
+            email = memberRequestDTO.email,
+            password = memberRequestDTO.password,
+            age = memberRequestDTO.age
         )
+        memberRepository.save(member)
+        return MemberMapper.toDTO(member)
     }
 
     fun updateMember(memberId: String, memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
-        return MemberResponseDTO(
-            UUID.randomUUID(),
-            memberRequestDTO.name,
-            memberRequestDTO.age,
-            memberRequestDTO.email
-        )
+        return MemberMapper.toDTO(memberRepository.save(
+            MemberMapper.toEntity(memberRequestDTO)
+        ))
     }
 
     fun deleteMember(memberId: String): Boolean {
-        return true;
+        memberRepository.delete(memberRepository.findById(UUID.fromString(memberId)).orElseThrow())
+        return true
     }
 }

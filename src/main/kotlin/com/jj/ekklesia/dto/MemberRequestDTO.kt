@@ -17,6 +17,6 @@ class MemberRequestDTO(
     val age: Int,
 
     @field:Email(message = "Email inválido")
-    val email: String
+    val email: String,
 
 )
