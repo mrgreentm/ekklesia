@@ -46,7 +46,7 @@ class MemberServiceImpl(
 
     override fun deleteMember(memberId: String): Boolean {
         val member = memberRepository.findById(UUID.fromString(memberId))
-            .orElseThrow { RuntimeException("Membro não encontrado") }
+            .orElseThrow { ResourceNotFoundException("Membro não encontrado") }
 
         memberRepository.delete(member)
         return true
