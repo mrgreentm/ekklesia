@@ -1,13 +1,13 @@
 package com.jj.ekklesia.model
 
 import jakarta.persistence.*
-import java.util.UUID
+import java.util.*
 
 @Entity
 @Table(name = "members")
 data class Member (
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, updatable = false, columnDefinition = "CHAR(36)")
     val id: UUID = UUID.randomUUID(),
 
     @Column(nullable = false)

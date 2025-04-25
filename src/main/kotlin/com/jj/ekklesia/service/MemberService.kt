@@ -7,6 +7,7 @@ import com.jj.ekklesia.model.Member
 import com.jj.ekklesia.repository.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.lang.RuntimeException
 import java.util.*
 
 @Service
@@ -17,7 +18,6 @@ class MemberService(private val memberRepository: MemberRepository) {
         }
     }
 
-    @Transactional
     fun createMember(memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
         val member =  Member(
             id = UUID.randomUUID(),
@@ -31,9 +31,21 @@ class MemberService(private val memberRepository: MemberRepository) {
     }
 
     fun updateMember(memberId: String, memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
-        return MemberMapper.toDTO(memberRepository.save(
-            MemberMapper.toEntity(memberRequestDTO)
-        ))
+        val member = memberRepository
+            .findById(UUID.fromString(memberId))
+            .orElseThrow {
+                RuntimeException("Membro nao encontrado")
+            }
+        val updatedMember = member.copy(
+            name = memberRequestDTO.name,
+            email = memberRequestDTO.email,
+            password = memberRequestDTO.password,
+            age = memberRequestDTO.age
+        )
+
+        val savedMember = memberRepository.save(updatedMember)
+
+        return MemberMapper.toDTO(savedMember)
     }
 
     fun deleteMember(memberId: String): Boolean {
