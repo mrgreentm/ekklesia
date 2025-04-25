@@ -2,6 +2,7 @@ package com.jj.ekklesia.service.impl
 
 import com.jj.ekklesia.dto.MemberRequestDTO
 import com.jj.ekklesia.dto.MemberResponseDTO
+import com.jj.ekklesia.exception.ResourceNotFoundException
 import com.jj.ekklesia.mapper.MemberMapper
 import com.jj.ekklesia.model.Member
 import com.jj.ekklesia.repository.MemberRepository
@@ -31,7 +32,7 @@ class MemberServiceImpl(
 
     override fun updateMember(memberId: String, memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
         val member = memberRepository.findById(UUID.fromString(memberId))
-            .orElseThrow { RuntimeException("Membro não encontrado") }
+            .orElseThrow { ResourceNotFoundException("Membro não encontrado") }
 
         val updatedMember = member.copy(
             name = memberRequestDTO.name,
