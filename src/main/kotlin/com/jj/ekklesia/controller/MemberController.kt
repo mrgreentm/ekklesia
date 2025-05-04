@@ -23,17 +23,17 @@ class MemberController(private val memberService: MemberService) {
 
     @PostMapping
     fun createMember(@RequestBody memberRequestDTO: MemberRequestDTO): ResponseEntity<MemberResponseDTO> {
-        val createdPerson = memberService.createMember(memberRequestDTO)
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson)
+        val createdMember = memberService.createMember(memberRequestDTO)
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdMember)
     }
 
-//    @PutMapping("/{id}")
-//    fun updatePerson(
-//        @PathVariable id: UUID,
-//        @RequestBody personRequestDTO: PersonRequestDTO
-//    ): ResponseEntity<PersonResponseDTO> {
-//        return ResponseEntity.ok(personService.updatePerson(id, personRequestDTO))
-//    }
+    @PutMapping("/{id}")
+    fun updateMember(
+        @PathVariable id: UUID,
+        @RequestBody memberRequestDTO: MemberRequestDTO
+    ): ResponseEntity<MemberResponseDTO> {
+        return ResponseEntity.ok(memberService.updateMember(id, memberRequestDTO))
+    }
 
     @DeleteMapping("/{id}")
     fun deleteMember(@PathVariable id: UUID): ResponseEntity<Void> {

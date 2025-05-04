@@ -11,8 +11,8 @@ class Member(
     val id: UUID? = null,
 
     @Embedded
-    val person: Person,
+    var person: Person,
 
     @Column(nullable = false)
-    val membershipStatus: String
+    var membershipStatus: String
 )
