@@ -10,8 +10,8 @@ class Visitor(
     val id: UUID? = null,
 
     @Embedded
-    val person: Person,
+    var person: Person,
 
     @Column(nullable = false)
-    val visitPurpose: String
+    var visitPurpose: String
 )
