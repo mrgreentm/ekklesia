@@ -22,13 +22,13 @@ class VisitorController(private val visitorService: VisitorService) {
     }
 
     @PostMapping
-    fun createMember(@RequestBody visitorRequestDTO: VisitorRequestDTO): ResponseEntity<VisitorResponseDTO> {
+    fun createVisitor(@RequestBody visitorRequestDTO: VisitorRequestDTO): ResponseEntity<VisitorResponseDTO> {
         val createdMember = visitorService.createVisitor(visitorRequestDTO)
         return ResponseEntity.status(HttpStatus.CREATED).body(createdMember)
     }
 
     @PutMapping("/{id}")
-    fun updateMember(
+    fun updateVisitor(
         @PathVariable id: UUID,
         @RequestBody visitorRequestDTO: VisitorRequestDTO
     ): ResponseEntity<VisitorResponseDTO> {
@@ -36,7 +36,7 @@ class VisitorController(private val visitorService: VisitorService) {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteMember(@PathVariable id: UUID): ResponseEntity<Void> {
+    fun deleteVisitor(@PathVariable id: UUID): ResponseEntity<Void> {
         return if (visitorService.deleteVisitor(id)) {
             ResponseEntity.noContent().build()
         } else {
