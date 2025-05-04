@@ -1,9 +1,9 @@
 package com.jj.ekklesia.dto
 
-class MemberRequestDTO(
+class VisitorRequestDTO(
     name: String,
     email: String,
     password: String,
     age: Int,
-    val membershipStatus: String
+    val visitPurpose: String
 ) : PersonRequestDTO(name, email, password, age)
