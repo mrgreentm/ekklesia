@@ -2,10 +2,10 @@ package com.jj.ekklesia.dto
 
 import java.util.*
 
-class MemberResponseDTO(
+class VisitorResponseDTO(
     id: UUID,
     name: String,
     email: String,
     age: Int,
-    val membershipStatus: String
+    val visitPurpose: String
 ) : PersonResponseDTO(id, name, email, age)

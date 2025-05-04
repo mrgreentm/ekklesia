@@ -4,15 +4,14 @@ import jakarta.persistence.*
 import java.util.*
 
 @Entity
-class Member(
+class Visitor(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "BINARY(16)")
     val id: UUID? = null,
 
     @Embedded
     val person: Person,
 
     @Column(nullable = false)
-    val membershipStatus: String
+    val visitPurpose: String
 )
