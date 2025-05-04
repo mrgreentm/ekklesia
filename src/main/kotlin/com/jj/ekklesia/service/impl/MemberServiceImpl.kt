@@ -2,6 +2,7 @@ package com.jj.ekklesia.service.impl
 
 import com.jj.ekklesia.dto.MemberRequestDTO
 import com.jj.ekklesia.dto.MemberResponseDTO
+import com.jj.ekklesia.exception.ResourceNotFoundException
 import com.jj.ekklesia.model.Member
 import com.jj.ekklesia.model.Person
 import com.jj.ekklesia.repository.MemberRepository
@@ -38,10 +39,26 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
         return MemberResponseDTO(savedMember.id!!, savedMember.person.name, savedMember.person.email, savedMember.person.age, savedMember.membershipStatus)
     }
 
+    override fun updateMember(id: UUID, memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
+        val member = memberRepository.findById(id).orElseThrow {
+            ResourceNotFoundException("Membro não encontrado")
+        }
+        member.person = Person(memberRequestDTO.name, memberRequestDTO.email, memberRequestDTO.age, memberRequestDTO.password)
+        member.membershipStatus = memberRequestDTO.membershipStatus
+        memberRepository.save(member)
+        return MemberResponseDTO(
+            id = member.id!!,
+            name = member.person.name,
+            email = member.person.email,
+            membershipStatus = member.membershipStatus,
+            age =  member.person.age
+        )
+    }
+
 
     override fun deleteMember(id: UUID): Boolean {
         val member = memberRepository.findById(id).orElseThrow {
-            RuntimeException("Membro não encontrado")
+            ResourceNotFoundException("Membro não encontrado")
         }
         memberRepository.delete(member)
         return true
