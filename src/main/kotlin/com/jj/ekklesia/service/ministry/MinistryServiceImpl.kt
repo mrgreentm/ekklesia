@@ -1,18 +1,16 @@
-package com.jj.ekklesia.service.impl
+package com.jj.ekklesia.service.ministry
 
-import com.jj.ekklesia.dto.MinistryRequestDTO
-import com.jj.ekklesia.dto.MinistryResponseDTO
-import com.jj.ekklesia.dto.SimpleMemberDTO
+import com.jj.ekklesia.dto.ministry.MinistryRequestDTO
+import com.jj.ekklesia.dto.ministry.MinistryResponseDTO
+import com.jj.ekklesia.dto.ministry.SimpleMemberDTO
 import com.jj.ekklesia.exception.ResourceNotFoundException
 import com.jj.ekklesia.model.Member
 import com.jj.ekklesia.model.Ministry
 import com.jj.ekklesia.repository.MemberRepository
 import com.jj.ekklesia.repository.MinistryRepository
-import com.jj.ekklesia.service.MinistryService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
-import kotlin.math.min
 
 @Service
 @Transactional

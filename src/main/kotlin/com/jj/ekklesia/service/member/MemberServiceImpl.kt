@@ -1,14 +1,13 @@
-package com.jj.ekklesia.service.impl
+package com.jj.ekklesia.service.member
 
-import com.jj.ekklesia.dto.MemberRequestDTO
-import com.jj.ekklesia.dto.MemberResponseDTO
+import com.jj.ekklesia.dto.member.MemberRequestDTO
+import com.jj.ekklesia.dto.member.MemberResponseDTO
 import com.jj.ekklesia.exception.ResourceNotFoundException
 import com.jj.ekklesia.model.Member
 import com.jj.ekklesia.model.MemberRole
 import com.jj.ekklesia.model.Person
 import com.jj.ekklesia.repository.MemberRepository
 import com.jj.ekklesia.repository.MemberRoleRepository
-import com.jj.ekklesia.service.MemberService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*

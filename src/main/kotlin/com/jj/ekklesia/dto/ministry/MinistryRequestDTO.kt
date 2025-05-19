@@ -1,4 +1,4 @@
-package com.jj.ekklesia.dto
+package com.jj.ekklesia.dto.ministry
 
 import java.util.*
 

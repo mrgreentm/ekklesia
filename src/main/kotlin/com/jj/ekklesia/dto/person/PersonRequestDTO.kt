@@ -1,4 +1,4 @@
-package com.jj.ekklesia.dto
+package com.jj.ekklesia.dto.person
 
 open class PersonRequestDTO(
     val name: String,

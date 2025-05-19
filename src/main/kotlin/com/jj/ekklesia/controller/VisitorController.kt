@@ -1,7 +1,7 @@
 package com.jj.ekklesia.controller
-import com.jj.ekklesia.dto.VisitorRequestDTO
-import com.jj.ekklesia.dto.VisitorResponseDTO
-import com.jj.ekklesia.service.VisitorService
+import com.jj.ekklesia.dto.visitor.VisitorRequestDTO
+import com.jj.ekklesia.dto.visitor.VisitorResponseDTO
+import com.jj.ekklesia.service.visitor.VisitorService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

@@ -1,5 +1,6 @@
-package com.jj.ekklesia.dto
+package com.jj.ekklesia.dto.visitor
 
+import com.jj.ekklesia.dto.person.PersonResponseDTO
 import java.util.*
 
 class VisitorResponseDTO(
