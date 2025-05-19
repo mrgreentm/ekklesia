@@ -4,8 +4,10 @@ import com.jj.ekklesia.dto.MemberRequestDTO
 import com.jj.ekklesia.dto.MemberResponseDTO
 import com.jj.ekklesia.exception.ResourceNotFoundException
 import com.jj.ekklesia.model.Member
+import com.jj.ekklesia.model.MemberRole
 import com.jj.ekklesia.model.Person
 import com.jj.ekklesia.repository.MemberRepository
+import com.jj.ekklesia.repository.MemberRoleRepository
 import com.jj.ekklesia.service.MemberService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -13,7 +15,10 @@ import java.util.*
 
 @Service
 @Transactional
-class MemberServiceImpl(private val memberRepository: MemberRepository) : MemberService {
+class MemberServiceImpl(
+    private val memberRepository: MemberRepository,
+    private val memberRoleRepository: MemberRoleRepository
+    ) : MemberService {
 
     override fun getAllMembers(): List<MemberResponseDTO> {
         return memberRepository.findAll().map {
@@ -29,12 +34,13 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
     }
 
     override fun createMember(memberRequest: MemberRequestDTO): MemberResponseDTO {
+        val role = verifyRole(memberRequest.memberRole)
         val member = Member(person = Person(
             name = memberRequest.name,
             email = memberRequest.email,
             age = memberRequest.age,
             password = memberRequest.password
-        ), memberRole = memberRequest.memberRole)
+        ), memberRole = role)
         val savedMember = memberRepository.save(member)
         return MemberResponseDTO(savedMember.id!!, savedMember.person.name, savedMember.person.email, savedMember.person.age, savedMember.memberRole)
     }
@@ -43,8 +49,9 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
         val member = memberRepository.findById(id).orElseThrow {
             ResourceNotFoundException("Membro não encontrado")
         }
+        val role = verifyRole(memberRequestDTO.memberRole)
         member.person = Person(memberRequestDTO.name, memberRequestDTO.email, memberRequestDTO.age, memberRequestDTO.password)
-        member.memberRole = memberRequestDTO.memberRole
+        member.memberRole = role
         memberRepository.save(member)
         return MemberResponseDTO(
             id = member.id!!,
@@ -62,5 +69,11 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
         }
         memberRepository.delete(member)
         return true
+    }
+
+    private fun verifyRole(roleId: Long): MemberRole {
+        return memberRoleRepository.findById(roleId).orElseThrow {
+            RuntimeException("Cargo não encontrado")
+        }
     }
 }
