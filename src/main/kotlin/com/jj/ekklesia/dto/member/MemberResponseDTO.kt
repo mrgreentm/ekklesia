@@ -1,5 +1,6 @@
-package com.jj.ekklesia.dto
+package com.jj.ekklesia.dto.member
 
+import com.jj.ekklesia.dto.person.PersonResponseDTO
 import com.jj.ekklesia.model.MemberRole
 import java.util.*
 

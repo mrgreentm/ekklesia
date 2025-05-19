@@ -1,7 +1,7 @@
-package com.jj.ekklesia.service
+package com.jj.ekklesia.service.ministry
 
-import com.jj.ekklesia.dto.MinistryRequestDTO
-import com.jj.ekklesia.dto.MinistryResponseDTO
+import com.jj.ekklesia.dto.ministry.MinistryRequestDTO
+import com.jj.ekklesia.dto.ministry.MinistryResponseDTO
 import java.util.*
 
 interface MinistryService {

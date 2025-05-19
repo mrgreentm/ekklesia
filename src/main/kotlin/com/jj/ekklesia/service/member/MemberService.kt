@@ -1,7 +1,7 @@
-package com.jj.ekklesia.service
+package com.jj.ekklesia.service.member
 
-import com.jj.ekklesia.dto.MemberRequestDTO
-import com.jj.ekklesia.dto.MemberResponseDTO
+import com.jj.ekklesia.dto.member.MemberRequestDTO
+import com.jj.ekklesia.dto.member.MemberResponseDTO
 import java.util.*
 
 interface MemberService {

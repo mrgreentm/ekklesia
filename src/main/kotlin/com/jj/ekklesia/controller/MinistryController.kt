@@ -1,8 +1,8 @@
 package com.jj.ekklesia.controller
 
-import com.jj.ekklesia.dto.MinistryRequestDTO
-import com.jj.ekklesia.dto.MinistryResponseDTO
-import com.jj.ekklesia.service.MinistryService
+import com.jj.ekklesia.dto.ministry.MinistryRequestDTO
+import com.jj.ekklesia.dto.ministry.MinistryResponseDTO
+import com.jj.ekklesia.service.ministry.MinistryService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

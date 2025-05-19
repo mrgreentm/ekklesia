@@ -1,7 +1,7 @@
-package com.jj.ekklesia.service
+package com.jj.ekklesia.service.visitor
 
-import com.jj.ekklesia.dto.VisitorRequestDTO
-import com.jj.ekklesia.dto.VisitorResponseDTO
+import com.jj.ekklesia.dto.visitor.VisitorRequestDTO
+import com.jj.ekklesia.dto.visitor.VisitorResponseDTO
 import java.util.*
 
 interface VisitorService {

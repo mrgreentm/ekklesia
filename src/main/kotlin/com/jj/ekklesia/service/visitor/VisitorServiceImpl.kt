@@ -1,12 +1,11 @@
-package com.jj.ekklesia.service.impl
+package com.jj.ekklesia.service.visitor
 
-import com.jj.ekklesia.dto.VisitorRequestDTO
-import com.jj.ekklesia.dto.VisitorResponseDTO
+import com.jj.ekklesia.dto.visitor.VisitorRequestDTO
+import com.jj.ekklesia.dto.visitor.VisitorResponseDTO
 import com.jj.ekklesia.exception.ResourceNotFoundException
 import com.jj.ekklesia.model.Person
 import com.jj.ekklesia.model.Visitor
 import com.jj.ekklesia.repository.VisitorRepository
-import com.jj.ekklesia.service.VisitorService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*

@@ -1,4 +1,6 @@
-package com.jj.ekklesia.dto
+package com.jj.ekklesia.dto.member
+
+import com.jj.ekklesia.dto.person.PersonRequestDTO
 
 
 class MemberRequestDTO(
