@@ -1,5 +1,6 @@
 package com.jj.ekklesia.dto
 
+import com.jj.ekklesia.model.MemberRole
 import java.util.*
 
 class MemberResponseDTO(
@@ -7,5 +8,5 @@ class MemberResponseDTO(
     name: String,
     email: String,
     age: Int,
-    val membershipStatus: String
+    val memberRole: MemberRole
 ) : PersonResponseDTO(id, name, email, age)
