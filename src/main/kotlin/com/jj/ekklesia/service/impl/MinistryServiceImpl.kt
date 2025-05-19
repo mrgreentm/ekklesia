@@ -20,12 +20,8 @@ class MinistryServiceImpl(
     override fun createMinistry(ministryRequestDTO: MinistryRequestDTO): MinistryResponseDTO {
         val members = memberRepository.findAllById(ministryRequestDTO.memberIds)
         val leaders = memberRepository.findAllById(ministryRequestDTO.leaderIds)
+        this.verifyIfMemberIsMinisteryLeader(leaders)
 
-        leaders.forEach {
-            if (it.memberRole.id != 5L) {
-                throw IllegalArgumentException("O membro ${it.person.name} não possui o cargo de 'Líder de Ministério'")
-            }
-        }
 
         val ministry = Ministry(
             name = ministryRequestDTO.name,
@@ -56,6 +52,14 @@ class MinistryServiceImpl(
             name = this.person.name,
             email = this.person.email
         )
+    }
+
+    private fun verifyIfMemberIsMinisteryLeader(members: List<Member>) {
+        members.forEach {
+            if (it.memberRole.id != 5L) {
+                throw IllegalArgumentException("O membro ${it.person.name} não possui o cargo de 'Líder de Ministério'")
+            }
+        }
     }
 
 
