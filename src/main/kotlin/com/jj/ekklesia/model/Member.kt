@@ -18,5 +18,9 @@ class Member(
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
-    var memberRole: MemberRole
+    var memberRole: MemberRole,
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "church_id", nullable = false)
+    var church: Church
 )
