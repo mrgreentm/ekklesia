@@ -13,6 +13,7 @@ class Member(
     @Embedded
     var person: Person,
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", nullable = false)
     var memberRole: MemberRole
 )

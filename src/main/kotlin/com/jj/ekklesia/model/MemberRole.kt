@@ -1,9 +1,14 @@
 package com.jj.ekklesia.model
-enum class MemberRole {
-    PASTOR,
-    EVANGELIST,
-    PRESBYTER,
-    MISSIONARY,
-    DEACON,
-    MINISTRY_LEADER
-}
+
+import jakarta.persistence.*
+import java.io.Serializable
+
+@Entity
+@Table(name = "member_roles")
+data class MemberRole(
+    @Id
+    val id: Long? = null,
+
+    @Column(nullable = false, unique = true)
+    val name: String
+): Serializable
