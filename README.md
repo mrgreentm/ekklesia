@@ -70,7 +70,7 @@ Esses papéis podem ser facilmente referenciados por ID nas telas administrativa
 
 ---
 
-## 🧪 Como rodar localmente
+## 🐳 Como rodar localmente
 
 ```bash
 # 1. Clone o projeto
