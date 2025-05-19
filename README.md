@@ -113,5 +113,5 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 ## 📬 Contato
 
 Desenvolvido com fé por **[João Jacinto de Souza Neto]**  
-📧 email@seudominio.com  
+📧 joaonetotfm@gmail.com  
 🔗 [linkedin.com/in/joaojacintoneto](https://www.linkedin.com/in/joaojacintoneto/)
