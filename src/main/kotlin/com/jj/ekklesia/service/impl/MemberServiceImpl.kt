@@ -17,7 +17,7 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
 
     override fun getAllMembers(): List<MemberResponseDTO> {
         return memberRepository.findAll().map {
-            MemberResponseDTO(it.id!!, it.person.name, it.person.email, it.person.age, it.membershipStatus)
+            MemberResponseDTO(it.id!!, it.person.name, it.person.email, it.person.age, it.memberRole)
         }
     }
 
@@ -25,7 +25,7 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
         val member = memberRepository.findById(id).orElseThrow {
             RuntimeException("Membro não encontrado")
         }
-        return MemberResponseDTO(member.id!!, member.person.name, member.person.email, member.person.age, member.membershipStatus)
+        return MemberResponseDTO(member.id!!, member.person.name, member.person.email, member.person.age, member.memberRole)
     }
 
     override fun createMember(memberRequest: MemberRequestDTO): MemberResponseDTO {
@@ -34,9 +34,9 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
             email = memberRequest.email,
             age = memberRequest.age,
             password = memberRequest.password
-        ), membershipStatus = memberRequest.membershipStatus)
+        ), memberRole = memberRequest.memberRole)
         val savedMember = memberRepository.save(member)
-        return MemberResponseDTO(savedMember.id!!, savedMember.person.name, savedMember.person.email, savedMember.person.age, savedMember.membershipStatus)
+        return MemberResponseDTO(savedMember.id!!, savedMember.person.name, savedMember.person.email, savedMember.person.age, savedMember.memberRole)
     }
 
     override fun updateMember(id: UUID, memberRequestDTO: MemberRequestDTO): MemberResponseDTO {
@@ -44,13 +44,13 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
             ResourceNotFoundException("Membro não encontrado")
         }
         member.person = Person(memberRequestDTO.name, memberRequestDTO.email, memberRequestDTO.age, memberRequestDTO.password)
-        member.membershipStatus = memberRequestDTO.membershipStatus
+        member.memberRole = memberRequestDTO.memberRole
         memberRepository.save(member)
         return MemberResponseDTO(
             id = member.id!!,
             name = member.person.name,
             email = member.person.email,
-            membershipStatus = member.membershipStatus,
+            memberRole = member.memberRole,
             age =  member.person.age
         )
     }

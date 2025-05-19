@@ -14,5 +14,5 @@ class Member(
     var person: Person,
 
     @Column(nullable = false)
-    var membershipStatus: String
+    var memberRole: MemberRole
 )
