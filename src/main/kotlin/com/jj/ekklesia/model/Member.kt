@@ -11,6 +11,9 @@ class Member(
     val id: UUID? = null,
 
     @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "email", column = Column(name = "email", unique = true))
+    )
     var person: Person,
 
     @ManyToOne(fetch = FetchType.EAGER)
